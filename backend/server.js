@@ -7,6 +7,26 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// GET endpoint to test if server is running
+app.get('/', (req, res) => {
+  res.json({ message: 'CloudBlogger API is running!' });
+});
+
+// GET endpoint to test API health
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'OK', message: 'API is healthy' });
+});
+
+// GET endpoint to test if server is running
+app.get('/', (req, res) => {
+  res.json({ message: 'CloudBlogger API is running!' });
+});
+
+// GET endpoint to test API health
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'OK', message: 'API is healthy' });
+});
+
 // POST endpoint to receive form data and send email
 app.post('/api/send-demo-email', async (req, res) => {
   const { user_name, user_email, user_phone, preferred_date } = req.body;
