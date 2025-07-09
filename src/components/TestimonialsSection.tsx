@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import universityLogo from '../assets/logo_addons/university.svg';
 import accentureLogo from '../assets/companylogo/accenture.svg';
 import atlassianLogo from '../assets/companylogo/atlassian.svg';
 import hcltechLogo from '../assets/companylogo/hcltech.svg';

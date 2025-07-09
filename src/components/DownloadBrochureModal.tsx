@@ -10,19 +10,17 @@ interface DownloadBrochureModalProps {
 const DownloadBrochureModal: React.FC<DownloadBrochureModalProps> = ({ onClose, onSubmit, loading = false, error }) => {
   const [name, setName] = useState('');
   const [mobile, setMobile] = useState('');
-  const [errorState, setError] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !mobile.trim()) {
-      setError('Please enter your name and mobile number.');
+      // Optionally, show an alert or handle error UI here
       return;
     }
-    if (!/^\d{10}$/.test(mobile.trim())) {
-      setError('Please enter a valid 10-digit mobile number.');
+    if (!/^[\d]{10}$/.test(mobile.trim())) {
+      // Optionally, show an alert or handle error UI here
       return;
     }
-    setError('');
     onSubmit && onSubmit({ name: name.trim(), mobile: mobile.trim() });
   };
 
