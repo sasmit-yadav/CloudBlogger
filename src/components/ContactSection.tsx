@@ -1,6 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const ContactSection: React.FC = () => {
+  const [consultationForm, setConsultationForm] = useState({
+    first_name: '',
+    last_name: '',
+    user_email: '',
+    preferred_course: ''
+  });
+  const [consultationSubmitted, setConsultationSubmitted] = useState(false);
+  const [consultationLoading, setConsultationLoading] = useState(false);
+
+  const handleConsultationChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setConsultationForm({ ...consultationForm, [e.target.name]: e.target.value });
+  };
+
+  const handleConsultationSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setConsultationLoading(true);
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/consultation`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(consultationForm),
+      });
+      if (response.ok) {
+        setConsultationSubmitted(true);
+        setConsultationForm({
+          first_name: '',
+          last_name: '',
+          user_email: '',
+          preferred_course: ''
+        });
+      } else {
+        alert('Failed to send consultation request. Please try again.');
+      }
+    } catch (error) {
+      alert('Failed to send consultation request. Please try again.');
+    }
+    setConsultationLoading(false);
+  };
+
   return (
     <section id="contact" className="py-20 bg-grafanaBg scroll-mt-24">
       <div className="container mx-auto px-4">
@@ -132,22 +171,40 @@ const ContactSection: React.FC = () => {
             <div className="bg-grafanaGray rounded-xl p-8 border border-gray-700">
               <h3 className="text-2xl font-semibold text-white mb-6">Book Free Consultation</h3>
               
-              <form className="space-y-6">
+              {consultationSubmitted ? (
+                <div className="text-center text-lg text-grafanaBlue font-semibold py-8">
+                  Thank you for your consultation request! We will connect with you within 24 hours.<br />
+                  <span className="block text-base text-gray-300 font-normal mt-4">Please check your email for a confirmation message.</span>
+                </div>
+              ) : consultationLoading ? (
+                <div className="flex justify-center items-center py-12">
+                  <span className="inline-block w-10 h-10 border-4 border-blue-400 border-t-transparent rounded-full animate-spin"></span>
+                </div>
+              ) : (
+              <form className="space-y-6" onSubmit={handleConsultationSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-gray-300 text-sm font-medium mb-2">First Name</label>
                     <input
+                      name="first_name"
                       type="text"
+                      value={consultationForm.first_name}
+                      onChange={handleConsultationChange}
                       className="w-full bg-grafanaBg border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-grafanaBlue focus:outline-none transition-colors duration-300"
                       placeholder="Enter your first name"
+                      required
                     />
                   </div>
                   <div>
                     <label className="block text-gray-300 text-sm font-medium mb-2">Last Name</label>
                     <input
+                      name="last_name"
                       type="text"
+                      value={consultationForm.last_name}
+                      onChange={handleConsultationChange}
                       className="w-full bg-grafanaBg border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-grafanaBlue focus:outline-none transition-colors duration-300"
                       placeholder="Enter your last name"
+                      required
                     />
                   </div>
                 </div>
@@ -155,17 +212,27 @@ const ContactSection: React.FC = () => {
                 <div>
                   <label className="block text-gray-300 text-sm font-medium mb-2">Email</label>
                   <input
+                    name="user_email"
                     type="email"
+                    value={consultationForm.user_email}
+                    onChange={handleConsultationChange}
                     className="w-full bg-grafanaBg border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-grafanaBlue focus:outline-none transition-colors duration-300"
                     placeholder="Enter your email"
+                    required
                   />
                 </div>
 
                 <div>
                   <label className="block text-gray-300 text-sm font-medium mb-2">Preferred Course</label>
-                  <select className="w-full bg-grafanaBg border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-grafanaBlue focus:outline-none transition-colors duration-300">
+                  <select 
+                    name="preferred_course"
+                    value={consultationForm.preferred_course}
+                    onChange={handleConsultationChange}
+                    className="w-full bg-grafanaBg border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-grafanaBlue focus:outline-none transition-colors duration-300"
+                    required
+                  >
                     <option value="">Select a course</option>
-                    <option value="complete">Complete Program</option>
+                    <option value="Complete Program">Complete Program</option>
                   </select>
                 </div>
 
@@ -176,6 +243,7 @@ const ContactSection: React.FC = () => {
                   Book Free Consultation
                 </button>
               </form>
+              )}
 
               <div className="mt-6 text-center">
                 <p className="text-gray-400 text-sm">
