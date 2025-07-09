@@ -15,7 +15,6 @@ import oneToOneLogo from '../assets/logo_addons/one-to-one-logo.svg';
 // SVG logo URLs (to be replaced by user-provided SVGs later)
 const hrLogo = 'https://www.svgrepo.com/show/3870/managers.svg';
 const placementLogo = 'https://www.svgrepo.com/show/45083/project-manager.svg';
-const mentoringLogo = 'https://www.svgrepo.com/show/354115/mentoring.svg';
 
 const addons = [
   {
