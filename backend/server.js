@@ -235,5 +235,11 @@ app.post('/api/brochure-request', async (req, res) => {
   }
 });
 
+// Serve brochure with correct filename for all browsers
+app.get('/api/download-brochure', (req, res) => {
+  const filePath = path.join(__dirname, '../public/CloudBlogger-Brochure.pdf');
+  res.download(filePath, 'CloudBlogger-Brochure.pdf');
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); 

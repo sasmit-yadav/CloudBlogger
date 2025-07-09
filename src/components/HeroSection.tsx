@@ -15,7 +15,7 @@ const HeroSection: React.FC = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 md:pt-28 pb-20 scroll-mt-24">
       {/* Background floating DevOps logos (spread in empty space, not at corners or behind content) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
+      <div className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
         {/* Azure - left-middle, shifted 5px above */}
         <img src={azureLogo} alt="Azure" className="absolute top-[140px] left-56 w-16 opacity-70 animate-float" />
         {/* Kubernetes - upper right side, moved a bit below and left */}

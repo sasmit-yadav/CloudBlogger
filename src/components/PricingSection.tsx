@@ -21,8 +21,7 @@ const PricingSection: React.FC = () => {
       setShowBrochureModal(false);
       // Trigger download
       const link = document.createElement('a');
-      link.href = '/CloudBlogger-Brochure.pdf';
-      link.download = 'CloudBlogger-Brochure.pdf';
+      link.href = '/api/download-brochure';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
