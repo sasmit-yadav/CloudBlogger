@@ -28,6 +28,6 @@
     }
   ],
   "env": {
-    "REACT_APP_API_URL": "https://your-render-backend-url.onrender.com"
+    "REACT_APP_API_URL": "https://cloudblogger.onrender.com"
   }
 } 

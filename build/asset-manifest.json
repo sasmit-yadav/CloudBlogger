@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f0e839df.css",
+    "main.js": "/static/js/main.b0cd17c1.js",
+    "static/media/logo.svg": "/static/media/logo.e141a76290af8c4100a8bc3486661749.svg",
+    "static/media/tech_interviewl_ogo.svg": "/static/media/tech_interviewl_ogo.fb8be2b00c824a03e149b83d0f7099a6.svg",
+    "static/media/one-to-one-logo.svg": "/static/media/one-to-one-logo.f67cc6ee9fc2f59f485b7c210c5c1567.svg",
+    "static/media/kubernetes-logo.svg": "/static/media/kubernetes-logo.3ade6bfa4b917a8227680e3f34cf6957.svg",
+    "static/media/naukri-seeklogo.svg": "/static/media/naukri-seeklogo.bf9926af4b3686a4135dc9dfda444977.svg",
+    "static/media/grafana-logo.svg": "/static/media/grafana-logo.8a32df4371d08428ff9aece8b07115cb.svg",
+    "static/media/university.svg": "/static/media/university.90e5ade5c0a647a780f606f058bd4104.svg",
+    "static/media/tech-support-logo.svg": "/static/media/tech-support-logo.e184855e7aff6ac5f6570c863f3cb401.svg",
+    "static/media/resume-logo.svg": "/static/media/resume-logo.357d6b546b529a5e0fddfcedefe2fdca.svg",
+    "static/media/devops-logo.svg": "/static/media/devops-logo.31edb2ca09c81d849ab3eac50307ef11.svg",
+    "static/media/azure-logo.svg": "/static/media/azure-logo.34c7964368fa32c2968fde812dc827ff.svg",
+    "static/media/docker-logo.svg": "/static/media/docker-logo.48b052bd2a48f70f143b42a92fd9aebc.svg",
+    "static/media/prometheus-logo.svg": "/static/media/prometheus-logo.3e9d4662c20b7bb13c7dc0780fd660e4.svg",
+    "static/media/rhel-logo.svg": "/static/media/rhel-logo.465429e9424f9b6c2d734f9340aab0fd.svg",
+    "static/media/gitlab-logo.svg": "/static/media/gitlab-logo.4a31f1b0d7169fcc66bc864a62521c31.svg",
+    "static/media/linkedin-logo.svg": "/static/media/linkedin-logo.c341cc1c307221b0fe42599c619ceeaf.svg",
+    "index.html": "/index.html",
+    "static/media/terraform-logo.svg": "/static/media/terraform-logo.d221b71cc614263b2b1611a359958ef9.svg",
+    "main.f0e839df.css.map": "/static/css/main.f0e839df.css.map",
+    "main.b0cd17c1.js.map": "/static/js/main.b0cd17c1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f0e839df.css",
+    "static/js/main.b0cd17c1.js"
+  ]
+}

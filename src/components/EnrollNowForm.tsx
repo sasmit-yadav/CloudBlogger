@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// Add this at the top for TypeScript Razorpay support
+declare global {
+  interface Window {
+    Razorpay?: any;
+  }
+}
+
 const EnrollNowForm: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
@@ -11,32 +18,96 @@ const EnrollNowForm: React.FC = () => {
   });
   const [loading, setLoading] = useState(false);
   const [cardVisible, setCardVisible] = useState(false);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [waitingForPayment, setWaitingForPayment] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     setCardVisible(true);
+    // Dynamically load Razorpay script if not already present
+    if (!window.Razorpay) {
+      const script = document.createElement('script');
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Set API base URL (use env variable or localhost)
+  const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
+  const handleRazorpayPayment = async (amount: number) => {
+    // 1. Create order on backend
+    const res = await fetch(`${API_BASE_URL}/api/create-order`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount, currency: 'INR', receipt: form.user_email }),
+    });
+    const order = await res.json();
+
+    // 2. Open Razorpay Checkout
+    const options = {
+      key: 'rzp_live_qz01XefIdwgmrN', // Live Key ID
+      amount: order.amount,
+      currency: order.currency,
+      name: 'Cloud Blogger',
+      description: 'Course Enrollment',
+      order_id: order.id,
+      handler: function (response: any) {
+        // Send confirmation email after payment
+        fetch(`${API_BASE_URL}/api/enroll-now-confirm`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...form,
+            payment_id: response.razorpay_payment_id,
+            order_id: response.razorpay_order_id,
+          }),
+        })
+          .then(res => res.json())
+          .then(data => {
+            setPaymentSuccess(true);
+            setSubmitted(true);
+            setWaitingForPayment(false);
+          })
+          .catch(err => {
+            setPaymentSuccess(true);
+            setSubmitted(true);
+            setWaitingForPayment(false);
+          });
+      },
+      prefill: {
+        name: form.user_name,
+        email: form.user_email,
+        contact: form.user_phone,
+      },
+      theme: {
+        color: '#2563eb',
+      },
+    };
+    if (window.Razorpay) {
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } else {
+      alert('Razorpay SDK failed to load. Please refresh the page and try again.');
+      setWaitingForPayment(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/enroll-now`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-      if (response.ok) {
-        setSubmitted(true);
-      } else {
-        alert('Failed to send enrollment email. Please try again.');
-      }
-    } catch (error) {
-      alert('Failed to send enrollment email. Please try again.');
+      setWaitingForPayment(true);
+      await handleRazorpayPayment(1);
+    } catch (error: any) {
+      console.error('Enroll Now fetch error:', error);
+      alert(error.message || 'A network error occurred. Please try again.');
+      setWaitingForPayment(false);
     }
     setLoading(false);
   };
@@ -58,10 +129,20 @@ const EnrollNowForm: React.FC = () => {
         <div className="h-1 w-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-grafanaBlue via-blue-400 to-blue-300 opacity-70" />
         <p className="text-gray-300 text-center mb-8">Take the first step toward your dream tech career. Fill out the form to enroll now!</p>
         {submitted ? (
-          <div className="text-center text-lg text-grafanaBlue font-semibold py-8">
-            Thank you for enrolling! We will connect with you within 24 hours.<br />
-            <span className="block text-base text-gray-300 font-normal mt-4">Please check your email for a confirmation message.</span>
-          </div>
+          waitingForPayment && !paymentSuccess ? (
+            <div className="flex justify-center items-center py-12">
+              <span className="inline-block w-10 h-10 border-4 border-blue-400 border-t-transparent rounded-full animate-spin"></span>
+            </div>
+          ) : paymentSuccess ? (
+            <div className="text-center text-lg text-grafanaBlue font-semibold py-8">
+              Payment successful! Confirmation email sent.<br />
+              <span className="block text-base text-gray-300 font-normal mt-4">
+                Thank you for enrolling and completing your payment. Please check your email for confirmation and next steps.
+              </span>
+            </div>
+          ) : (
+            null
+          )
         ) : loading ? (
           <div className="flex justify-center items-center py-12">
             <span className="inline-block w-10 h-10 border-4 border-blue-400 border-t-transparent rounded-full animate-spin"></span>
