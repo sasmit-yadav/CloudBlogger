@@ -155,7 +155,10 @@ const TrainersSection: React.FC = () => {
             <p className="text-gray-300 mb-6">
               Join our growing community and learn from passionate DevOps professionals who care about your success.
             </p>
-            <button className="bg-gradient-to-r from-grafanaBlue via-blue-400 to-blue-300 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-grafana transition-all duration-300 transform hover:scale-105">
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="bg-gradient-to-r from-grafanaBlue via-blue-400 to-blue-300 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-grafana transition-all duration-300 transform hover:scale-105"
+            >
               Start Learning Today
             </button>
           </div>

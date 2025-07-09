@@ -144,7 +144,10 @@ const AboutSection: React.FC = () => {
                 <p className="text-gray-300 text-base mb-4 text-center max-w-xs">
                   Join our growing community of learners and take the first step towards your DevOps career.
                 </p>
-                <button className="bg-gradient-to-r from-grafanaBlue via-blue-400 to-blue-300 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-grafana hover:shadow-2xl transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-blue-400/40 flex items-center gap-2">
+                <button 
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="bg-gradient-to-r from-grafanaBlue via-blue-400 to-blue-300 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-grafana hover:shadow-2xl transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-blue-400/40 flex items-center gap-2"
+                >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" /></svg>
                   Get Started Today
                 </button>
