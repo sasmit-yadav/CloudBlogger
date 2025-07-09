@@ -84,7 +84,7 @@ app.post('/api/send-demo-email', async (req, res) => {
 
 // POST endpoint to receive enroll now form data and send emails
 app.post('/api/enroll-now', async (req, res) => {
-  const { user_name, user_email, user_phone } = req.body;
+  const { user_name, user_email, user_phone, preferred_course } = req.body;
 
   // Configure your SMTP transporter for Gmail
   const transporter = nodemailer.createTransport({
@@ -100,7 +100,7 @@ app.post('/api/enroll-now', async (req, res) => {
     from: 'joincloudblogger@gmail.com',
     to: 'joincloudblogger@gmail.com',
     subject: 'New Enrollment',
-    text: `Name: ${user_name}\nEmail: ${user_email}\nPhone: ${user_phone}`,
+    text: `Name: ${user_name}\nEmail: ${user_email}\nPhone: ${user_phone}\nPreferred Course: ${preferred_course || 'Powerful Devops Course'}`,
   };
 
   // Confirmation email to user (HTML, text only, personalized, updated text)

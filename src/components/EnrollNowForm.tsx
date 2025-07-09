@@ -7,6 +7,7 @@ const EnrollNowForm: React.FC = () => {
     user_name: '',
     user_email: '',
     user_phone: '',
+    preferred_course: 'Powerful Devops Course',
   });
   const [loading, setLoading] = useState(false);
   const [cardVisible, setCardVisible] = useState(false);
@@ -16,7 +17,7 @@ const EnrollNowForm: React.FC = () => {
     setCardVisible(true);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -70,6 +71,9 @@ const EnrollNowForm: React.FC = () => {
             <input name="user_name" type="text" placeholder="Your Name" value={form.user_name} onChange={handleChange} className="w-full bg-grafanaBg border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-grafanaBlue focus:shadow-lg focus:shadow-blue-500/10 focus:outline-none transition-all duration-300" required />
             <input name="user_email" type="email" placeholder="Your Email" value={form.user_email} onChange={handleChange} className="w-full bg-grafanaBg border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-grafanaBlue focus:shadow-lg focus:shadow-blue-500/10 focus:outline-none transition-all duration-300" required />
             <input name="user_phone" type="tel" placeholder="Your Phone" value={form.user_phone} onChange={handleChange} className="w-full bg-grafanaBg border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-grafanaBlue focus:shadow-lg focus:shadow-blue-500/10 focus:outline-none transition-all duration-300" required />
+            <select name="preferred_course" value={form.preferred_course} onChange={handleChange} className="w-full bg-grafanaBg border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-grafanaBlue focus:shadow-lg focus:shadow-blue-500/10 focus:outline-none transition-all duration-300">
+              <option value="Powerful Devops Course">Powerful Devops Course</option>
+            </select>
             <button type="submit" className="w-full bg-gradient-to-r from-grafanaBlue via-blue-400 to-blue-300 text-white py-3 rounded-full text-lg font-semibold hover:shadow-grafana transition-all duration-300 transform hover:scale-105 active:scale-95 active:shadow-lg mt-2">Submit</button>
           </form>
         )}
