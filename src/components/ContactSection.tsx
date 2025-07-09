@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import blogJpeg from '../assets/blog.jpeg';
 
 const ContactSection: React.FC = () => {
   const [consultationForm, setConsultationForm] = useState({
@@ -308,10 +307,6 @@ const ContactSection: React.FC = () => {
                 </a>
                 <a href="https://youtube.com/@joincloudblogger?si=aMuij9QQGyNGA-Qk" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                   <svg className="w-7 h-7 text-red-500 hover:text-red-700 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a2.994 2.994 0 0 0-2.107-2.117C19.24 3.5 12 3.5 12 3.5s-7.24 0-9.391.569A2.994 2.994 0 0 0 .502 6.186C0 8.338 0 12 0 12s0 3.662.502 5.814a2.994 2.994 0 0 0 2.107 2.117C4.76 20.5 12 20.5 12 20.5s7.24 0 9.391-.569a2.994 2.994 0 0 0 2.107-2.117C24 15.662 24 12 24 12s0-3.662-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                </a>
-                <div className="flex-1"></div>
-                <a href="https://medium.com/cloudblogger" target="_blank" rel="noopener noreferrer" aria-label="Blog">
-                  <img src={blogJpeg} alt="Blog" className="w-14 h-14 rounded-full object-cover shadow-lg hover:scale-105 transition border-2 border-orange-400" />
                 </a>
               </div>
             </div>

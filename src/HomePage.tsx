@@ -9,7 +9,7 @@ import AboutSection from './components/AboutSection';
 import ReferralSection from './components/ReferralSection';
 import TrainersSection from './components/TrainersSection';
 import ContactSection from './components/ContactSection';
-import BackToTop from './components/BackToTop';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 const HomePage: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,7 +39,7 @@ const HomePage: React.FC = () => {
         <ContactSection />
       </main>
 
-      <BackToTop />
+      <FloatingWhatsApp />
     </div>
   );
 };

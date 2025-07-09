@@ -21,7 +21,8 @@ const PricingSection: React.FC = () => {
       setShowBrochureModal(false);
       // Trigger download
       const link = document.createElement('a');
-      link.href = '/api/download-brochure';
+      link.href = `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/download-brochure`;
+      link.download = 'CloudBlogger-Brochure.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -60,7 +61,7 @@ const PricingSection: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-grafanaBlue/10 to-blue-200/10"></div>
             
             {/* Discount badge */}
-            <div className="absolute top-6 right-6 bg-gradient-to-r from-grafanaBlue to-blue-400 text-white px-4 py-2 rounded-full text-sm font-semibold">
+            <div className="hidden md:block absolute top-6 right-6 bg-gradient-to-r from-grafanaBlue to-blue-400 text-white px-4 py-2 rounded-full text-sm font-semibold">
               80% OFF
             </div>
 
