@@ -282,7 +282,7 @@ const ContactSection: React.FC = () => {
           <div className="mt-16 pt-8 border-t border-gray-700">
             <div className="text-center">
               <div className="text-gray-400 text-sm">
-                © 2024 Cloud Blogger. All rights reserved.
+                © 2025 Cloud Blogger. All rights reserved.
               </div>
             </div>
           </div>
