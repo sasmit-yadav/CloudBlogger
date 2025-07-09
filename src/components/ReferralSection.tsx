@@ -119,29 +119,6 @@ const ReferralSection: React.FC = () => {
                 ))}
               </div>
 
-              {/* Referral Link */}
-              <div className="bg-grafanaBg rounded-xl p-8 border border-gray-700 mb-12 flex flex-col md:flex-row md:items-center md:space-x-6 transition-all duration-300 hover:border-grafanaBlue/50 hover:shadow-lg group">
-                <h4 className="text-white font-semibold mb-6 md:mb-0 text-xl flex items-center">
-                  <svg className="w-6 h-6 mr-3 text-grafanaBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                  </svg>
-                  Your Referral Link
-                </h4>
-                <div className="flex-1 flex items-center space-x-4">
-                  <input
-                    type="text"
-                    value="https://cloudblogger.com/ref/your-unique-code"
-                    readOnly
-                    className="flex-1 bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-gray-300 text-sm"
-                  />
-                  <button className="bg-gradient-to-r from-grafanaBlue via-blue-400 to-blue-300 text-white px-8 py-3 rounded-full font-semibold flex items-center gap-2 shadow-md transition-all duration-300 hover:from-blue-400 hover:to-grafanaBlue hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-400/30">
-                    {/* Clipboard Icon */}
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V5a3 3 0 013-3h2a3 3 0 013 3v2m4 0v12a2 2 0 01-2 2H6a2 2 0 01-2-2V7h16zm-4 4h-4m0 4h4" /></svg>
-                    Copy Link
-                  </button>
-                </div>
-              </div>
-
             </div>
           </div>
 

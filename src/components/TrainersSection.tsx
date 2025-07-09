@@ -1,4 +1,7 @@
 import React from 'react';
+import sasmitImg from '../assets/trainers/sasmit.jpg';
+import gauravImg from '../assets/trainers/gaurav.jpeg';
+import salmanImg from '../assets/trainers/salman.jpeg';
 
 const TrainersSection: React.FC = () => {
   const trainers = [
@@ -8,8 +11,8 @@ const TrainersSection: React.FC = () => {
       role: 'Cloud and AI Architect',
       company: 'Cloud Blogger',
       experience: '10+ Years Experience',
-      expertise: ['Azure', 'AWS', 'Google Cloud', 'DevOps', 'AI', 'Automation'],
-      image: '👨‍💻',
+      expertise: ['Azure', 'AWS', 'Google Cloud', 'DevOps', 'AI', 'Automation','Power BI'],
+      image: gauravImg,
       bio: 'Expert in Azure, AWS, Google Cloud, DevOps, AI, and Automation. Passionate about empowering students with real-world cloud and automation skills to launch their tech careers.',
       linkedin: 'https://www.linkedin.com/company/cloud-blogger/',
       github: 'https://github.com/joincloudblogger',
@@ -21,9 +24,9 @@ const TrainersSection: React.FC = () => {
       role: 'Technical Community Manager',
       company: 'Cloud Blogger',
       experience: '5+ Year Experience',
-      expertise: ['Azure', 'DevOps', 'CI/CD', 'Monitoring', 'Cloud Security', 'Scripting'],
-      image: '👨‍💻',
-      bio: 'Expert in Azure, DevOps, CI/CD, Monitoring, Cloud Security, and Scripting. Dedicated to empowering learners and building strong tech communities through practical DevOps education.',
+      expertise: ['Cloud', 'DevOps', 'AI','Counseling'],
+      image: salmanImg,
+      bio: 'Salman is our Technical Manager and Career Counselor with expertise in Cloud, DevOps, and AI. He helps individuals build careers—from landing jobs to long-term success.',
       linkedin: 'https://www.linkedin.com/company/cloud-blogger/',
       github: 'https://github.com/joincloudblogger',
       youtube: 'https://youtube.com/@joincloudblogger?si=aMuij9QQGyNGA-Qk'
@@ -34,9 +37,9 @@ const TrainersSection: React.FC = () => {
       role: 'Developer Advocate',
       company: 'Cloud Blogger',
       experience: '1+ Year Experience',
-      expertise: ['C++', 'Azure AI Service', 'Node.js', 'Python'],
-      image: '👨‍🏭',
-      bio: 'Developer Advocate skilled in C++, Azure AI Service, Node.js, and Python. Focused on helping students master modern programming and AI technologies for real-world applications.',
+      expertise: ['Azure AI Service', 'Node.js', 'Python','Power BI'],
+      image: sasmitImg,
+      bio: 'Developer Advocate skilled in Azure AI Service, Power BI, Node.js, and Python. Focused on helping students master modern programming and AI technologies for real-world applications.',
       linkedin: 'https://www.linkedin.com/company/cloud-blogger/',
       github: 'https://github.com/joincloudblogger',
       youtube: 'https://youtube.com/@joincloudblogger?si=aMuij9QQGyNGA-Qk'
@@ -72,13 +75,19 @@ const TrainersSection: React.FC = () => {
               {/* Trainer Header */}
               <div className="flex flex-col items-center mb-6">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-r from-grafanaBlue via-blue-400 to-blue-300 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform duration-300">
-                  {trainer.image}
+                  {typeof trainer.image === 'string' && trainer.image.startsWith('data') ? (
+                    <img src={trainer.image} alt={trainer.name} className="w-16 h-16 rounded-full object-cover" />
+                  ) : typeof trainer.image === 'string' && (trainer.image.endsWith('.jpg') || trainer.image.endsWith('.jpeg')) ? (
+                    <img src={trainer.image} alt={trainer.name} className="w-16 h-16 rounded-full object-cover" />
+                  ) : (
+                    trainer.image
+                  )}
                 </div>
                 <h3 className="text-xl font-semibold text-white group-hover:text-grafanaBlue transition-colors duration-300 text-center">
                   {trainer.name}
                 </h3>
                 <p className="text-gray-400 text-sm text-center">{trainer.role}</p>
-                <p className="text-grafanaBlue text-sm font-medium text-center">{trainer.company}</p>
+                <p className="text-white text-sm font-medium text-center">{trainer.company}</p>
               </div>
 
               {/* Experience */}

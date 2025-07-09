@@ -53,18 +53,17 @@ const HeroSection: React.FC = () => {
           {/* Main heading */}
           <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight">
             <span className="bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
-              Launch Your
+            Master DevOps
             </span>
             <br />
             <span className="bg-gradient-to-r from-grafanaBlue via-blue-400 to-blue-300 bg-clip-text text-transparent">
-              Tech Career
+            Without Coding!
             </span>
           </h1>
 
           {/* Description */}
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Unbeatable pricing you can't resist! Master the most in-demand DevOps and Cloud technologies 
-            at a fraction of the market cost. Get hands-on experience with real-world projects and land your dream job.
+          Join our 4-month DevOps Program — from Zero to Expert, no coding required! Learn through 100% live real world projects. Gain industry-ready skills at just ₹19,999 and launch your tech career with ease.
           </p>
 
           {/* CTA Buttons */}

@@ -9,11 +9,11 @@ const AboutSection: React.FC = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
               <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                About Cloud
+                About
               </span>
               <br />
               <span className="bg-gradient-to-r from-grafanaBlue via-blue-400 to-blue-300 bg-clip-text text-transparent">
-                Blogger
+                Cloud Blogger
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -26,7 +26,7 @@ const AboutSection: React.FC = () => {
             <div>
               <h3 className="text-3xl font-semibold text-white mb-6">Our Mission</h3>
               <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                Cloud Blogger was founded in 2024 with a vision to empower aspiring tech professionals. Our goal is to provide practical, affordable, and career-focused education that leads directly to real opportunities in the tech industry.
+                Cloud Blogger was founded in 2018 with a vision to empower aspiring tech professionals. Our goal is to provide practical, affordable, and career-focused education that leads directly to real opportunities in the tech industry.
               </p>
               <p className="text-gray-300 text-lg leading-relaxed mb-8">
                 We are committed to hands-on, project-based learning and dedicated support, ensuring every learner is job-ready and confident to take on the tech world.
@@ -42,7 +42,7 @@ const AboutSection: React.FC = () => {
                     </svg>
                   </div>
                   <div>
-                    <div className="text-lg font-bold text-white mb-1">Founded in 2024</div>
+                    <div className="text-lg font-bold text-white mb-1">Founded in 2018</div>
                     <div className="text-gray-200 text-sm font-medium">Empowering Tech Careers from Day One!</div>
                   </div>
                 </div>
@@ -63,7 +63,13 @@ const AboutSection: React.FC = () => {
                   title: 'Career-Focused Support',
                   desc: 'Comprehensive career services including resume prep, interview coaching, and direct placement assistance.'
                 }].map((feature, i) => (
-                  <div key={feature.title} className={`group flex items-start space-x-4 bg-grafanaBg rounded-xl p-4 border border-gray-700 hover:border-grafanaBlue/50 transition-all duration-500 hover:scale-105 relative overflow-hidden`}> 
+                  <div
+                    key={feature.title}
+                    className={
+                      `group flex items-start space-x-4 bg-grafanaBg rounded-xl p-4 border-2 transition-all duration-500 relative overflow-hidden ` +
+                      `border-gray-700 hover:border-grafanaGreen/40`
+                    }
+                  >
                     {/* Floating Accent Dot */}
                     <div className={`w-8 h-8 rounded-full bg-gradient-to-r ${feature.color} flex items-center justify-center flex-shrink-0 mt-1 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,8 +80,6 @@ const AboutSection: React.FC = () => {
                       <h4 className="text-white font-semibold mb-1 group-hover:text-grafanaBlue transition-colors duration-300">{feature.title}</h4>
                       <p className="text-gray-400 text-sm">{feature.desc}</p>
                     </div>
-                    {/* Animated Border on Hover */}
-                    <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-grafanaGreen/40 transition-all duration-500 pointer-events-none"></div>
                   </div>
                 ))}
               </div>
@@ -86,7 +90,7 @@ const AboutSection: React.FC = () => {
               {/* Stats Cards with Hover & Animated Border */}
               <div className="grid grid-cols-2 gap-6">
                 {[{
-                  value: '10+',
+                  value: '7+',
                   label: 'Year Experience',
                   color: 'text-grafanaGreen'
                 }, {

@@ -92,7 +92,7 @@ app.post('/api/send-demo-email', async (req, res) => {
 
 // POST endpoint to receive consultation form data and send emails
 app.post('/api/consultation', async (req, res) => {
-  const { first_name, last_name, user_email, preferred_course } = req.body;
+  const { first_name, last_name, user_email, phone_number, preferred_course } = req.body;
 
   // Configure your SMTP transporter for Gmail
   const transporter = nodemailer.createTransport({
@@ -108,7 +108,7 @@ app.post('/api/consultation', async (req, res) => {
     from: 'joincloudblogger@gmail.com',
     to: 'joincloudblogger@gmail.com',
     subject: 'New Consultation Request',
-    text: `Name: ${first_name} ${last_name}\nEmail: ${user_email}\nPreferred Course: ${preferred_course || 'Not specified'}`,
+    text: `Name: ${first_name} ${last_name}\nEmail: ${user_email}\nPhone: ${phone_number}\nPreferred Course: ${preferred_course || 'Not specified'}`,
   };
 
   // Confirmation email to user (HTML, text only, personalized)
@@ -121,6 +121,7 @@ app.post('/api/consultation', async (req, res) => {
         <p>Hello ${first_name},</p>
         <p>Thank you for requesting a consultation with us!<br>
         We've received your request and will be in touch shortly to schedule the session.<br>
+        <b>Phone:</b> ${phone_number}<br>
         Looking forward to connecting with you soon.</p>
         <br>
         <p>Best Regards,<br>
@@ -201,6 +202,36 @@ app.post('/api/enroll-now-confirm', async (req, res) => {
   } catch (error) {
     console.error('Enroll confirmation email error:', error);
     res.status(500).json({ message: 'Failed to send confirmation email', error });
+  }
+});
+
+// POST endpoint for brochure download request
+app.post('/api/brochure-request', async (req, res) => {
+  const { name, mobile } = req.body;
+  if (!name || !mobile) {
+    return res.status(400).json({ message: 'Name and mobile are required.' });
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'joincloudblogger@gmail.com',
+      pass: 'abjekukosnmibmif',
+    },
+  });
+
+  const mailOptions = {
+    from: 'joincloudblogger@gmail.com',
+    to: 'joincloudblogger@gmail.com',
+    subject: 'Brochure Downloaded',
+    text: `Name: ${name}\nMobile: ${mobile}`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: 'Admin notified. Proceed to download.' });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to send email', error });
   }
 });
 

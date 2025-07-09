@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import universityLogo from '../assets/logo_addons/university.svg';
+import accentureLogo from '../assets/companylogo/accenture.svg';
+import atlassianLogo from '../assets/companylogo/atlassian.svg';
+import hcltechLogo from '../assets/companylogo/hcltech.svg';
+import infosysLogo from '../assets/companylogo/infosys.svg';
+import microsoftLogo from '../assets/companylogo/microsoft.svg';
+import tcsLogo from '../assets/companylogo/tcs.svg';
+import wiproLogo from '../assets/companylogo/wipro.svg';
+import edacoCloudLogo from '../assets/companylogo/edaco_cloud.svg';
+import iitDelhiWebp from '../assets/colleges/iitdelhi.webp';
 
 const TestimonialsSection: React.FC = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -7,51 +16,66 @@ const TestimonialsSection: React.FC = () => {
   const testimonials = [
     {
       id: 1,
-      name: 'Priya Sharma',
+      name: 'Dhiraj Arya',
       role: 'DevOps Engineer',
-      company: 'TCS',
-      image: '👩‍💼',
-      quote: 'Cloud Blogger transformed my career! From a fresher to a DevOps Engineer at TCS in just 6 months. The hands-on projects and placement support were incredible.',
-      salary: '₹15 LPA'
+      company: 'HCL Tech',
+      image: '👨‍💻',
+      quote: 'Cloud Blogger transformed my career! From a fresher to a DevOps Engineer at HCL Tech in just 6 months. The hands-on projects and placement support were incredible.',
+      salary: '₹28 LPA'
     },
     {
       id: 2,
-      name: 'Rahul Kumar',
-      role: 'Cloud Engineer',
-      company: 'Infosys',
+      name: 'Niku Kumar',
+      role: 'Senior DevOps Engineer',
+      company: 'HCL Tech',
       image: '👨‍💻',
-      quote: 'The course structure is perfect for beginners. I learned Docker, Kubernetes, and Azure from scratch. Now I\'m working at Infosys with a great package.',
-      salary: '₹16.2 LPA'
+      quote: 'The course structure is perfect for beginners. I learned Docker, Kubernetes, and Azure from scratch. Now I\'m working at HCL Tech with a great package.',
+      salary: '₹32 LPA'
     },
     {
       id: 3,
-      name: 'Anjali Patel',
-      role: 'Site Reliability Engineer',
-      company: 'Wipro',
-      image: '👩‍🔧',
+      name: 'Aakash Bhardwaj',
+      role: 'DevOps Engineer',
+      company: 'Microsoft',
+      image: '👨‍💻',
       quote: 'The 1-on-1 mentoring sessions helped me understand complex concepts easily. The resume prep and interview guidance were game-changers for my career.',
-      salary: '₹12.5 LPA'
+      salary: '₹35 LPA'
     },
     {
       id: 4,
-      name: 'Vikram Singh',
-      role: 'Platform Engineer',
-      company: 'HCL',
+      name: 'Meenakshi Saini',
+      role: 'DevOps Engineer',
+      company: 'Deloitte',
       image: '👨‍🏭',
       quote: 'Real-world projects gave me the confidence to handle production environments. The Terraform and GitLab CI/CD modules were particularly excellent.',
-      salary: '₹22.3 LPA'
+      salary: '₹28 LPA'
     }
   ];
 
   const colleges = [
-    { name: 'IIT Delhi', logo: 'iit-delhi' },
-    { name: 'IIT Bombay', logo: 'iit-bombay' },
-    { name: 'NIT Trichy', logo: 'nit-trichy' },
-    { name: 'NIT Warangal', logo: 'nit-warangal' },
-    { name: 'BITS Pilani', logo: 'bits-pilani' },
-    { name: 'VIT Vellore', logo: 'vit-vellore' },
-    { name: 'SRM University', logo: 'srm-university' },
-    { name: 'IIIT Hyderabad', logo: 'iiit-hyderabad' }
+    { name: 'IIT Delhi', logo: iitDelhiWebp },
+    { name: 'IIT Bombay', logo: require('../assets/colleges/iitbombay.jpeg') },
+    { name: 'NIT Trichy', logo: require('../assets/colleges/nittrichy.png') },
+    { name: 'BITS Pilani', logo: require('../assets/colleges/bits.png') },
+    { name: 'Amity University', logo: require('../assets/colleges/amityuniveristy.png') },
+    { name: 'DIT University', logo: require('../assets/colleges/dit.jpeg') },
+    { name: 'Galgotias University', logo: require('../assets/colleges/galgotia.jpeg') },
+    { name: 'GNIOT Noida', logo: require('../assets/colleges/GNIOT.jpeg') },
+    { name: 'JIIT Noida', logo: require('../assets/colleges/jiit.jpeg') },
+    { name: 'SRM University', logo: require('../assets/colleges/srm.jpeg') },
+    { name: 'UPES Dehradun', logo: require('../assets/colleges/upes.jpg_') },
+    { name: 'VIT Vellore', logo: require('../assets/colleges/vit.jpeg') },
+  ];
+
+  const companies = [
+    { name: 'Accenture', logo: accentureLogo },
+    { name: 'Atlassian', logo: atlassianLogo },
+    { name: 'HCLTech', logo: hcltechLogo },
+    { name: 'Infosys', logo: infosysLogo },
+    { name: 'Microsoft', logo: microsoftLogo },
+    { name: 'TCS', logo: tcsLogo },
+    { name: 'Wipro', logo: wiproLogo },
+    { name: 'Edaco Cloud', logo: edacoCloudLogo },
   ];
 
   // Carousel state for colleges
@@ -71,6 +95,30 @@ const TestimonialsSection: React.FC = () => {
     }, 5000);
     return () => clearInterval(timer);
   }, [testimonials.length]);
+
+  // Carousel state for companies (match colleges section exactly)
+  const [currentCompanyIndex, setCurrentCompanyIndex] = useState(0);
+  const companiesPerView = 4;
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentCompanyIndex((prev) => (prev + companiesPerView) % companies.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [companies.length]);
+
+  // Companies carousel: always show 4 per view, never cut off, fix indicators
+  const companyGroups: ({ name: string; logo: string } | null)[][] = [];
+  for (let i = 0; i < companies.length; i += companiesPerView) {
+    companyGroups.push(companies.slice(i, i + companiesPerView));
+  }
+  // Pad the last group if needed
+  if (companyGroups.length > 0 && companyGroups[companyGroups.length - 1].length < companiesPerView) {
+    const missing = companiesPerView - companyGroups[companyGroups.length - 1].length;
+    for (let i = 0; i < missing; i++) {
+      (companyGroups[companyGroups.length - 1] as ({ name: string; logo: string } | null)[]).push(null);
+    }
+  }
 
   return (
     <section id="testimonials" className="py-20 bg-grafanaBg scroll-mt-24">
@@ -159,7 +207,12 @@ const TestimonialsSection: React.FC = () => {
                   className="bg-grafanaGray min-w-[180px] rounded-xl p-6 border border-gray-700 hover:border-grafanaGreen/50 transition-all duration-300 text-center group flex-shrink-0"
                 >
                   <div className="mb-3 group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
-                    <img src={universityLogo} alt={college.name + ' logo'} className="w-12 h-12 object-contain" />
+                    <img 
+                      src={college.logo} 
+                      alt={college.name + ' logo'} 
+                      className="w-12 h-12 object-contain rounded-full p-1"
+                      style={college.name === 'IIT Delhi' ? { background: '#fff', padding: '8px' } : { background: '#fff', padding: '4px' }}
+                    />
                   </div>
                   <div className="text-white font-semibold text-sm">{college.name}</div>
                 </div>
@@ -180,7 +233,12 @@ const TestimonialsSection: React.FC = () => {
                           className="bg-grafanaGray min-w-[180px] rounded-xl p-6 border border-gray-700 hover:border-grafanaGreen/50 transition-all duration-300 text-center group flex-shrink-0"
                         >
                           <div className="mb-3 group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
-                            <img src={universityLogo} alt={college.name + ' logo'} className="w-12 h-12 object-contain" />
+                            <img 
+                              src={college.logo} 
+                              alt={college.name + ' logo'} 
+                              className="w-12 h-12 object-contain rounded-full p-1"
+                              style={college.name === 'IIT Delhi' ? { background: '#fff', padding: '8px' } : { background: '#fff', padding: '4px' }}
+                            />
                           </div>
                           <div className="text-white font-semibold text-sm">{college.name}</div>
                         </div>
@@ -197,6 +255,72 @@ const TestimonialsSection: React.FC = () => {
                     onClick={() => setCurrentCollegeIndex(idx * collegesPerView)}
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
                       currentCollegeIndex / collegesPerView === idx ? 'bg-grafanaGreen' : 'bg-gray-600'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Companies Placement Section */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-semibold text-white text-center mb-8">Our Learners are Placed In Top MNCs</h3>
+          <div className="relative max-w-4xl mx-auto px-2 md:px-8">
+            {/* Mobile: horizontal scroll, Desktop: carousel (identical to colleges) */}
+            <div className="flex gap-8 overflow-x-auto no-scrollbar py-2 px-1 md:hidden">
+              {companies.map((company) => (
+                <div
+                  key={company.name}
+                  className="bg-[#232936] min-w-[180px] rounded-xl p-6 border border-gray-700 hover:border-grafanaBlue/50 transition-all duration-300 text-center group flex-shrink-0"
+                >
+                  <div className="mb-3 flex items-center justify-center">
+                    <div className="bg-white rounded-full p-2 flex items-center justify-center w-14 h-14">
+                      <img src={company.logo} alt={company.name + ' logo'} className="w-10 h-10 object-contain" />
+                    </div>
+                  </div>
+                  <div className="text-white font-semibold text-sm">{company.name}</div>
+                </div>
+              ))}
+            </div>
+            {/* Desktop: carousel (identical to colleges, but never cuts off a card) */}
+            <div className="hidden md:block">
+              <div className="overflow-hidden">
+                <div
+                  className="flex transition-transform duration-700"
+                  style={{ transform: `translateX(-${(currentCompanyIndex / companiesPerView) * 100}%)` }}
+                >
+                  {companyGroups.map((group, groupIdx) => (
+                    <div key={groupIdx} className="flex gap-8 min-w-full justify-center">
+                      {group.map((company, idx) => (
+                        company ? (
+                          <div
+                            key={company.name}
+                            className="bg-[#232936] min-w-[180px] rounded-xl p-6 border border-gray-700 hover:border-grafanaBlue/50 transition-all duration-300 text-center group flex-shrink-0"
+                          >
+                            <div className="mb-3 flex items-center justify-center">
+                              <div className="bg-white rounded-full p-2 flex items-center justify-center w-14 h-14">
+                                <img src={company.logo} alt={company.name + ' logo'} className="w-10 h-10 object-contain" />
+                              </div>
+                            </div>
+                            <div className="text-white font-semibold text-sm">{company.name}</div>
+                          </div>
+                        ) : (
+                          <div key={idx} className="min-w-[180px]" />
+                        )
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {/* Carousel Indicators (fix coloring and count) */}
+              <div className="flex justify-center space-x-2 mt-4">
+                {companyGroups.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentCompanyIndex(idx * companiesPerView)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      Math.floor(currentCompanyIndex / companiesPerView) === idx ? 'bg-grafanaBlue' : 'bg-gray-600'
                     }`}
                   />
                 ))}

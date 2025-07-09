@@ -103,7 +103,7 @@ const EnrollNowForm: React.FC = () => {
     setLoading(true);
     try {
       setWaitingForPayment(true);
-      await handleRazorpayPayment(1);
+      await handleRazorpayPayment(19999);
     } catch (error: any) {
       console.error('Enroll Now fetch error:', error);
       alert(error.message || 'A network error occurred. Please try again.');

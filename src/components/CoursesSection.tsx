@@ -27,12 +27,12 @@ const CoursesSection: React.FC = () => {
       description: 'Containerization and container orchestration',
       logo: dockerLogo,
       duration: '3 weeks',
-      level: 'Beginner',
+      level: 'Advanced',
       topics: ['Container Basics', 'Docker Images', 'Docker Compose', 'Container Networking', 'Volume Management', 'Dockerfile Best Practices', 'Container Security', 'Registry Management']
     },
     {
       id: 3,
-      name: 'Azure + Kubernetes',
+      name: 'Azure Kubernetes Service',
       description: 'Microsoft Azure cloud and Kubernetes orchestration',
       logos: [azureLogo, kubernetesLogo],
       duration: '6 weeks',
@@ -45,7 +45,7 @@ const CoursesSection: React.FC = () => {
       description: 'Continuous Integration and Continuous Deployment',
       logo: gitlabLogo,
       duration: '2 weeks',
-      level: 'Intermediate',
+      level: 'Advanced',
       topics: ['CI/CD Pipeline Basics', 'GitLab Runners', 'Pipeline Stages', 'Environment Management', 'Security Scanning', 'Deployment Strategies', 'Pipeline Optimization', 'Troubleshooting']
     },
     {
@@ -54,7 +54,7 @@ const CoursesSection: React.FC = () => {
       description: 'Monitoring and alerting toolkit',
       logo: prometheusLogo,
       duration: '1 week',
-      level: 'Intermediate',
+      level: 'Advanced',
       topics: ['Metrics Collection', 'PromQL Queries', 'Alerting Rules', 'Service Discovery', 'Target Management', 'Data Retention', 'High Availability', 'Integration Setup']
     },
     {
@@ -63,7 +63,7 @@ const CoursesSection: React.FC = () => {
       description: 'Data visualization and analytics platform',
       logo: grafanaLogo,
       duration: '1 week',
-      level: 'Intermediate',
+      level: 'Advanced',
       topics: ['Dashboard Creation', 'Data Sources', 'Query Building', 'Visualization Types', 'Alerting & Notifications', 'User Management', 'Plugin Development', 'Performance Optimization']
     },
     {
@@ -93,16 +93,16 @@ const CoursesSection: React.FC = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
             <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Master the Most
+              Learn DevOps Tools
             </span>
             <br />
             <span className="bg-gradient-to-r from-grafanaBlue via-blue-400 to-blue-300 bg-clip-text text-transparent">
-              In-Demand Skills
+            In One Course
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Comprehensive courses designed by industry experts to get you job-ready in the fastest-growing tech domains.
-          </p>
+  4 Months Course, Get DevOps Job-Ready!
+</p>
         </div>
 
         {/* Courses Grid */}

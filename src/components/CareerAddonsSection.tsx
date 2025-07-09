@@ -91,7 +91,7 @@ const addons = [
   },
   {
     id: 7,
-    title: 'Job Placement Support',
+    title: 'Job Placement Assistance',
     description: 'Get direct placement assistance with our network of 500+ hiring companies.',
     logo: placementLogo,
     features: [
@@ -158,7 +158,7 @@ const addonMeta: { [key: string]: { type: string; icon: React.ReactElement; badg
     ),
     badgeClass: 'bg-gradient-to-r from-grafanaBlue/20 to-grafanaBlue/30 text-grafanaBlue border border-grafanaBlue/30 group-hover:from-grafanaBlue/30 group-hover:to-grafanaBlue/40',
   },
-  'Job Placement Support': {
+  'Job Placement Assistance': {
     type: 'Placement',
     icon: (
       <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 7v-7" /></svg>
