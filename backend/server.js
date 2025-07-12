@@ -6,6 +6,7 @@ const Razorpay = require('razorpay');
 
 const app = express();
 app.use(cors());
+
 app.use(express.json());
 
 const razorpay = new Razorpay({
