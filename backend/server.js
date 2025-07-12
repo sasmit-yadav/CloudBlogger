@@ -19,6 +19,10 @@ app.get('/', (req, res) => {
   res.json({ message: 'CloudBlogger API is running!' });
 });
 
+app.get('/api/ping', (req, res) => {
+  res.send('pong');
+});
+
 // GET endpoint to test API health
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'API is healthy' });
