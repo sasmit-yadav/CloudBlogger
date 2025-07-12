@@ -73,8 +73,8 @@ app.post('/api/send-demo-email', async (req, res) => {
         Looking forward to connecting with you soon.</p>
         <br>
         <p>Best Regards,<br>
-        <b>Gaurav Tevathiya | AI Architect</b><br>
-        Cloud Blogger</p>
+        <b>Cloud Blogger | Accounts Team</b><br>
+        </p>
       </div>
     `,
   };
@@ -125,8 +125,8 @@ app.post('/api/consultation', async (req, res) => {
         Looking forward to connecting with you soon.</p>
         <br>
         <p>Best Regards,<br>
-        <b>Gaurav Tevathiya | AI Architect</b><br>
-        Cloud Blogger</p>
+       <b>Cloud Blogger | Accounts Team</b><br>
+        </p>
       </div>
     `,
   };
@@ -189,8 +189,8 @@ app.post('/api/enroll-now-confirm', async (req, res) => {
         Looking forward to connecting with you soon.</p>
         <br>
         <p>Best Regards,<br>
-        <b>Gaurav Tevathiya | AI Architect</b><br>
-        Cloud Blogger</p>
+        <b>Cloud Blogger | Accounts Team</b><br>
+        </p>
       </div>
     `,
   };
