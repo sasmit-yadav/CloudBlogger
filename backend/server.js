@@ -80,13 +80,9 @@ app.post('/api/send-demo-email', async (req, res) => {
     `,
   };
 
-  try {
-    await transporter.sendMail(mailOptions);
-    await transporter.sendMail(userMailOptions);
-    res.status(200).json({ message: 'Email sent successfully' });
-  } catch (error) {
-    res.status(500).json({ message: 'Failed to send email', error });
-  }
+  await transporter.sendMail(mailOptions);
+  await transporter.sendMail(userMailOptions);
+  res.status(200).json({ message: 'Email sent successfully' });
 });
 
 // POST endpoint to receive consultation form data and send emails
@@ -130,29 +126,20 @@ app.post('/api/consultation', async (req, res) => {
     `,
   };
 
-  try {
-    await transporter.sendMail(mailOptions);
-    await transporter.sendMail(userMailOptions);
-    res.status(200).json({ message: 'Consultation email sent successfully' });
-  } catch (error) {
-    res.status(500).json({ message: 'Failed to send consultation email', error });
-  }
+  await transporter.sendMail(mailOptions);
+  await transporter.sendMail(userMailOptions);
+  res.status(200).json({ message: 'Consultation email sent successfully' });
 });
 
 // Endpoint to create Razorpay order
 app.post('/api/create-order', async (req, res) => {
   const { amount, currency = 'INR', receipt } = req.body;
-  try {
-    const order = await razorpay.orders.create({
-      amount: amount * 100, // amount in paise
-      currency,
-      receipt,
-    });
-    res.json(order);
-  } catch (err) {
-    console.error('Razorpay order error:', err);
-    res.status(500).send('Error creating order');
-  }
+  const order = await razorpay.orders.create({
+    amount: amount * 100, // amount in paise
+    currency,
+    receipt,
+  });
+  res.json(order);
 });
 
 app.post('/api/enroll-now-confirm', async (req, res) => {
@@ -194,14 +181,9 @@ app.post('/api/enroll-now-confirm', async (req, res) => {
     `,
   };
 
-  try {
-    await transporter.sendMail(mailOptions);
-    await transporter.sendMail(userMailOptions);
-    res.status(200).json({ message: 'Enrollment and payment confirmation email sent successfully' });
-  } catch (error) {
-    console.error('Enroll confirmation email error:', error);
-    res.status(500).json({ message: 'Failed to send confirmation email', error });
-  }
+  await transporter.sendMail(mailOptions);
+  await transporter.sendMail(userMailOptions);
+  res.status(200).json({ message: 'Enrollment and payment confirmation email sent successfully' });
 });
 
 // POST endpoint for brochure download request
@@ -226,12 +208,8 @@ app.post('/api/brochure-request', async (req, res) => {
     text: `Name: ${name}\nMobile: ${mobile}`,
   };
 
-  try {
-    await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: 'Admin notified. Proceed to download.' });
-  } catch (error) {
-    res.status(500).json({ message: 'Failed to send email', error });
-  }
+  await transporter.sendMail(mailOptions);
+  res.status(200).json({ message: 'Admin notified. Proceed to download.' });
 });
 
 // Serve brochure with correct filename for all browsers
