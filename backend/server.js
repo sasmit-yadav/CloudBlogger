@@ -25,7 +25,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // GET endpoint for ping-pong test
-app.get('/ping', (req, res) => {
+app.get('/api/ping', (req, res) => {
   res.status(200).send('pong');
 });
 
