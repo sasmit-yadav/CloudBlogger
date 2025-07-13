@@ -3,24 +3,20 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 const path = require('path');
 const Razorpay = require('razorpay');
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
-
 app.use(express.json());
 
 const razorpay = new Razorpay({
-  key_id: 'rzp_live_qz01XefIdwgmrN',
-  key_secret: 'T7uzFIqA3JQyVMABqnzagriy'
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET
 });
 
 // GET endpoint to test if server is running
 app.get('/', (req, res) => {
   res.json({ message: 'CloudBlogger API is running!' });
-});
-
-app.get('/api/ping', (req, res) => {
-  res.send('pong');
 });
 
 // GET endpoint to test API health
@@ -52,15 +48,15 @@ app.post('/api/send-demo-email', async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'joincloudblogger@gmail.com',
-      pass: 'abjekukosnmibmif',
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
   // Email to admin (plain text)
   const mailOptions = {
-    from: 'joincloudblogger@gmail.com',
-    to: 'joincloudblogger@gmail.com',
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER,
     subject: 'New Demo Booking',
     text: `Name: ${user_name}\nEmail: ${user_email}\nPhone: ${user_phone}\n${dateLine}`,
   };
@@ -78,8 +74,8 @@ app.post('/api/send-demo-email', async (req, res) => {
         Looking forward to connecting with you soon.</p>
         <br>
         <p>Best Regards,<br>
-        <b>Cloud Blogger | Accounts Team</b><br>
-        </p>
+        <b>Salman Shaik | Accounts Manager</b><br>
+        Cloud Blogger</p>
       </div>
     `,
   };
@@ -93,8 +89,6 @@ app.post('/api/send-demo-email', async (req, res) => {
   }
 });
 
-
-
 // POST endpoint to receive consultation form data and send emails
 app.post('/api/consultation', async (req, res) => {
   const { first_name, last_name, user_email, phone_number, preferred_course } = req.body;
@@ -103,15 +97,15 @@ app.post('/api/consultation', async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'joincloudblogger@gmail.com',
-      pass: 'abjekukosnmibmif',
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
   // Email to admin (plain text)
   const mailOptions = {
-    from: 'joincloudblogger@gmail.com',
-    to: 'joincloudblogger@gmail.com',
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER,
     subject: 'New Consultation Request',
     text: `Name: ${first_name} ${last_name}\nEmail: ${user_email}\nPhone: ${phone_number}\nPreferred Course: ${preferred_course || 'Not specified'}`,
   };
@@ -130,8 +124,8 @@ app.post('/api/consultation', async (req, res) => {
         Looking forward to connecting with you soon.</p>
         <br>
         <p>Best Regards,<br>
-       <b>Cloud Blogger | Accounts Team</b><br>
-        </p>
+        <b>Salman Shaik | Accounts Manager</b><br>
+        Cloud Blogger</p>
       </div>
     `,
   };
@@ -167,14 +161,14 @@ app.post('/api/enroll-now-confirm', async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'joincloudblogger@gmail.com',
-      pass: 'abjekukosnmibmif',
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
   const mailOptions = {
-    from: 'joincloudblogger@gmail.com',
-    to: 'joincloudblogger@gmail.com',
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER,
     subject: 'New Enrollment (Payment Successful)',
     text: `Name: ${user_name}\nEmail: ${user_email}\nPhone: ${user_phone}\nPreferred Course: ${preferred_course || 'Powerful Devops Course'}\nPayment ID: ${payment_id}\nOrder ID: ${order_id}`,
   };
@@ -194,8 +188,8 @@ app.post('/api/enroll-now-confirm', async (req, res) => {
         Looking forward to connecting with you soon.</p>
         <br>
         <p>Best Regards,<br>
-        <b>Cloud Blogger | Accounts Team</b><br>
-        </p>
+        <b>Salman Shaik | Accounts Manager</b><br>
+        Cloud Blogger</p>
       </div>
     `,
   };
@@ -220,14 +214,14 @@ app.post('/api/brochure-request', async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'joincloudblogger@gmail.com',
-      pass: 'abjekukosnmibmif',
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
   const mailOptions = {
-    from: 'joincloudblogger@gmail.com',
-    to: 'joincloudblogger@gmail.com',
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER,
     subject: 'Brochure Downloaded',
     text: `Name: ${name}\nMobile: ${mobile}`,
   };
