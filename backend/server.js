@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 const path = require('path');
 const Razorpay = require('razorpay');
+const mysql = require('mysql2');
 require('dotenv').config();
 
 const app = express();
@@ -12,6 +13,25 @@ app.use(express.json());
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET
+});
+
+app.get('/test-db', (req, res) => {
+  const connection = mysql.createConnection({
+    host: '200.69.22.5', // or your MySQL host
+    user: 'cloudblogger_sasmit',
+    password: 'Admg@1234',
+    database: 'cloudblogger_CloudBlogger',
+    port: 3306
+  });
+
+  connection.connect((err) => {
+    if (err) {
+      res.status(500).send('Database connection failed: ' + err.message);
+    } else {
+      res.send('Database connected successfully!');
+    }
+    connection.end();
+  });
 });
 
 // GET endpoint to test if server is running
