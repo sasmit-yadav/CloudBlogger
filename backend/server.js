@@ -17,7 +17,7 @@ const razorpay = new Razorpay({
 
 app.get('/test-db', (req, res) => {
   const connection = mysql.createConnection({
-    host: '200.69.22.5', // or your MySQL host
+    host: 'cloudblogger.in', // or your MySQL host
     user: 'cloudblogger_sasmit',
     password: 'Admg@1234',
     database: 'cloudblogger_CloudBlogger',
